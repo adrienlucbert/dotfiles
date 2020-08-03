@@ -1,0 +1,30 @@
+#!/bin/sh
+
+target=$(xrandr -q | grep " connected" | cut -d' ' -f1 | dmenu -i)
+
+# if target monitor is active:
+if [ "$(xrandr --listactivemonitors | grep $target | wc -l)" -eq 1 ]; then
+    action=$(echo -e "move\nturn off\nrotate" | dmenu -i)
+else
+    action=$(echo "turn on" | dmenu -i)
+fi
+
+case $action in
+    "move")
+        position=$(echo -e "left-of\nright-of\nabove\nbelow" | dmenu -i)
+        reference=$(xrandr -q | grep " connected" | cut -d' ' -f1 | grep -v $target | dmenu -i)
+        xrandr --output $target --$position $reference
+        ;;
+    "turn off")
+        xrandr --output $target --off
+        ;;
+    "rotate")
+        rotation=$(echo -e "inverted\nleft\nnormal\nright" | dmenu -i)
+        xrandr --output $target --rotate $rotation
+        ;;
+    "turn on")
+        xrandr --output $target --auto
+        ;;
+esac
+#xrandr --output eDP-1 --auto \
+#       --output HDMI-1-0 --same-as eDP-1 --left-of eDP-1
