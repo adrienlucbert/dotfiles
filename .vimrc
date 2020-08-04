@@ -1,8 +1,3 @@
-" make changes after sourcing archlinux.vim since it alters the value of the
-" 'compatible' option.
-
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages.
 runtime! archlinux.vim
 
 set nu rnu
@@ -11,23 +6,15 @@ set shiftwidth=4
 set expandtab
 set colorcolumn=80
 set autochdir
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 syntax on
-" colorscheme OceanicNext
-" colorscheme onedark
 colorscheme gruvbox 
 set bg=dark
 
 let g:colorizer_auto_color = 1
+let g:ctrlp_custom_ignore = 'node_modules\|git'
 let mapleader=" "
-
-" If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
-" Or better yet, read /usr/share/vim/vim80/vimrc_example.vim or the vim manual
-" and configure vim to your own liking!
-
-" do not load defaults if ~/.vimrc is missing
-" let skip_defaults_vim=1
 
 call plug#begin('~/.vim/plugged')
 

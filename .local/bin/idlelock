@@ -3,6 +3,6 @@
 xidlehook \
     --not-when-audio \
     --timer 0 '' '' \
-    --timer 60 'betterlockscreen -l dimblur' '' \
+    --timer 300 'betterlockscreen -l dimblur' '' \
     --timer 600 'betterlockscreen -s dimblur' ''
     #    --not-when-fullscreen \
