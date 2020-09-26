@@ -1,3 +1,5 @@
+# i3 config file (v4)
+
 ###############################################################################
 # VARS
 ###############################################################################
@@ -6,6 +8,7 @@ set $alt Mod1
 set $numlock Mod2
 set $mod Mod4
 set $term st
+set $browser google-chrome
 
 ###############################################################################
 # SETTINGS
@@ -13,10 +16,13 @@ set $term st
 
 font pango:monospace 10
 gaps inner 8
+#force-xinerama yes
 
 ###############################################################################
 # AUTOSTART
 ###############################################################################
+
+exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc
 
 ###############################################################################
 # WINDOW RULES
@@ -42,30 +48,108 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 
 ###############################################################################
-# BAR
+# WORSPACES
 ###############################################################################
 
-bar {
-    id top
+set $output1 "eDP1"
+set $output2 "DP1-1"
+set $output3 "DP1-2"
 
-    status_command i3status
-    position top
+# define workspaces
+workspace 1 output $output1
+workspace 2 output $output1
+workspace 3 output $output1
+workspace 4 output $output2
+workspace 5 output $output2
+workspace 6 output $output2
+workspace 7 output $output3
+workspace 8 output $output3
+workspace 9 output $output3
 
-    height 20
-    workspace_min_width 20
+# focus output
+bindsym $mod+Shift+w focus output $output1
+bindsym $mod+Shift+c focus output $output2
 
-    colors {
-        background #282A36
-        statusline #F8F8F2
-        separator  #44475A
+# switch to workspace
+bindsym $mod+ampersand workspace 1
+bindsym $mod+eacute workspace 2
+bindsym $mod+quotedbl workspace 3
+bindsym $mod+apostrophe workspace 4
+bindsym $mod+parenleft workspace 5
+bindsym $mod+minus workspace 6
+bindsym $mod+egrave workspace 7
+bindsym $mod+underscore workspace 8
+bindsym $mod+ccedilla workspace 9
 
-        focused_workspace  #44475A #44475A #F8F8F2
-        active_workspace   #282A36 #44475A #F8F8F2
-        inactive_workspace #282A36 #282A36 #BFBFBF
-        urgent_workspace   #FF5555 #FF5555 #F8F8F2
-        binding_mode       #FF5555 #FF5555 #F8F8F2
-    }
-}
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+eacute move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+egrave move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+ccedilla move container to workspace 9
+bindsym $mod+Shift+agrave move container to workspace 10
+
+# switch between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+###############################################################################
+# BARS
+###############################################################################
+
+#bar {
+#    id primary-bar
+#    
+#    output $output1
+#    tray_output primary
+#    status_command i3status
+#    position top
+#
+#    height 20
+#    workspace_min_width 20
+#
+#    colors {
+#        background #282A36
+#        statusline #F8F8F2
+#        separator  #44475A
+#
+#        focused_workspace  #44475A #44475A #F8F8F2
+#        active_workspace   #282A36 #44475A #F8F8F2
+#        inactive_workspace #282A36 #282A36 #BFBFBF
+#        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+#        binding_mode       #FF5555 #FF5555 #F8F8F2
+#    }
+#}
+#
+#bar {
+#    id secondary-bar
+#
+#    output $output2
+#    output $output3
+#    tray_output none
+#    position top
+#
+#    height 20
+#    workspace_min_width 20
+#
+#    colors {
+#        background #282A36
+#        statusline #F8F8F2
+#        separator  #44475A
+#
+#        focused_workspace  #44475A #44475A #F8F8F2
+#        active_workspace   #282A36 #44475A #F8F8F2
+#        inactive_workspace #282A36 #282A36 #BFBFBF
+#        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+#        binding_mode       #FF5555 #FF5555 #F8F8F2
+#    }
+#}
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ###############################################################################
 # WINDOW CONTROL
@@ -94,50 +178,6 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+Q kill
 
 ###############################################################################
-# WORSPACES
-###############################################################################
-
-# define workspaces
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# switch to workspace
-bindsym $mod+ampersand workspace number $ws1
-bindsym $mod+eacute workspace number $ws2
-bindsym $mod+quotedbl workspace number $ws3
-bindsym $mod+apostrophe workspace number $ws4
-bindsym $mod+parenleft workspace number $ws5
-bindsym $mod+minus workspace number $ws6
-bindsym $mod+egrave workspace number $ws7
-bindsym $mod+underscore workspace number $ws8
-bindsym $mod+ccedilla workspace number $ws9
-bindsym $mod+agrave workspace number $ws10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+eacute move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+egrave move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+ccedilla move container to workspace number $ws9
-bindsym $mod+Shift+agrave move container to workspace number $ws10
-
-# switch between workspaces
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
-
-###############################################################################
 # SHORTCUTS
 ###############################################################################
 
@@ -149,32 +189,47 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # control spotify
-bindsym $alt+$numlock+KP_5 exec playerctl -p spotify play-pause
-bindsym $alt+$numlock+KP_4 exec playerctl -p spotify previous
-bindsym $alt+$numlock+KP_6 exec playerctl -p spotify next
+bindsym $alt+$numlock+KP_5 exec --no-startup-id playerctl -p spotify play-pause
+bindsym $alt+$numlock+KP_4 exec --no-startup-id playerctl -p spotify previous
+bindsym $alt+$numlock+KP_6 exec --no-startup-id playerctl -p spotify next
 
-# start terminal
+# start programs
 bindsym $mod+Return exec $term
+bindsym $mod+w exec $browser
 
 # start applications menu
 #bindsym $mod+p exec rofi -show drun
 bindsym $mod+p exec dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'
+bindsym $mod+Shift+p exec rofi -show drun
 
 # restart i3 inplace
 bindsym $mod+Shift+r restart
 
 # window resize mode
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px
+        bindsym k resize grow height 10 px
+        bindsym j resize shrink height 10 px
+        bindsym l resize grow width 10 px
 
         bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
-# take screenshots
-bindsym --release Print exec scrot
-bindsym --release Shift+Print exec scrot --select --freeze
+# system mode
+set $system_mode_label System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$system_mode_label" {
+    bindsym l exec --no-startup-id betterlockscreen -l dimblur, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id betterlockscreen -s dimblur, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
+    bindsym Escape mode "default"
+}
+bindsym $mod+Escape mode "$system_mode_label"
+
+# take screenshots
+bindsym --release Print exec --no-startup-id scrot -e 'mv $f ~/screenshots'
+bindsym --release Shift+Print exec --no-startup-id scrot --select --freeze -e 'mv $f ~/screenshots'

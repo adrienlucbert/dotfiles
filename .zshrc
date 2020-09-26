@@ -112,4 +112,4 @@ alias vim="stty stop '' -ixoff; vim"
 
 alias fixbt="pacmd set-card-profile bluez_card.70_BF_92_01_DB_57 a2dp_sink"
 
-alias v="vim"
+alias cp="rsync -az --info=progress2 --no-inc-recursive" 

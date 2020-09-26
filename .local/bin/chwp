@@ -1,0 +1,13 @@
+#!/bin/sh
+
+wps_dir="$HOME/.config/wallpapers"
+
+wp=$(ls $wps_dir -1 | rofi -dmenu)
+
+if [ -z "$wp" ]; then
+    exit
+fi
+
+ln -fs $wps_dir/$wp $HOME/.wall
+feh --bg-fill ~/.wall
+betterlockscreen -u ~/.wall -b 2

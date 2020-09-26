@@ -35,8 +35,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 numlockx &
-feh --bg-scale ~/.wall &
+feh --bg-fill ~/.wall &
 redshift -c ~/.config/redshift/redshift.conf &
 idlelock &
+nm-applet &
 
 exec i3

@@ -1,30 +1,63 @@
 #!/bin/sh
 
-target=$(xrandr -q | grep " connected" | cut -d' ' -f1 | dmenu -i)
+config_dir="/home/alucbert/.local/share/monitorcontrol"
 
-# if target monitor is active:
-if [ "$(xrandr --listactivemonitors | grep $target | wc -l)" -eq 1 ]; then
-    action=$(echo -e "move\nturn off\nrotate" | dmenu -i)
-else
-    action=$(echo "turn on" | dmenu -i)
-fi
+function choose_category {
+    choices=("arrange monitors" "use preset")
+    choice=$(printf '%s\n' "${choices[@]}" | rofi -dmenu)
 
-case $action in
-    "move")
-        position=$(echo -e "left-of\nright-of\nabove\nbelow" | dmenu -i)
-        reference=$(xrandr -q | grep " connected" | cut -d' ' -f1 | grep -v $target | dmenu -i)
-        xrandr --output $target --$position $reference
-        ;;
-    "turn off")
-        xrandr --output $target --off
-        ;;
-    "rotate")
-        rotation=$(echo -e "inverted\nleft\nnormal\nright" | dmenu -i)
-        xrandr --output $target --rotate $rotation
-        ;;
-    "turn on")
-        xrandr --output $target --auto
-        ;;
-esac
-#xrandr --output eDP-1 --auto \
-#       --output HDMI-1-0 --same-as eDP-1 --left-of eDP-1
+    case $choice in
+        "${choices[0]}")
+            arrange_monitors
+            ;;
+        "${choices[1]}")
+            choose_preset
+            ;;
+    esac
+}
+
+function arrange_monitors {
+    target=$(xrandr -q | grep " connected" | cut -d' ' -f1 | rofi -dmenu)
+
+    if [ -z "$target" ]; then
+        exit
+    fi
+
+    # if target monitor is active:
+    if [ "$(xrandr --listactivemonitors | grep $target | wc -l)" -eq 1 ]; then
+        action=$(echo -e "move\nturn off\nrotate" | rofi -dmenu)
+    else
+        action=$(echo "turn on" | rofi -dmenu)
+    fi
+
+    case $action in
+        "move")
+            position=$(echo -e "left-of\nright-of\nabove\nbelow" | rofi -dmenu)
+            reference=$(xrandr -q | grep " connected" | cut -d' ' -f1 | grep -v $target | rofi -dmenu)
+            xrandr --output $target --$position $reference
+            ;;
+        "turn off")
+            xrandr --output $target --off
+            ;;
+        "rotate")
+            rotation=$(echo -e "inverted\nleft\nnormal\nright" | rofi -dmenu)
+            xrandr --output $target --rotate $rotation
+            ;;
+        "turn on")
+            xrandr --output $target --auto
+            ;;
+    esac
+}
+
+function choose_preset {
+    choices=( $(ls "${config_dir}/presets") )
+    choice=$(printf '%s\n' "${choices[@]}" | rofi -dmenu)
+
+    if [ -z "$choice" ]; then
+        exit
+    fi
+    echo "cat ${config_dir}/presets/${choice}"
+    sh -c "$(cat ${config_dir}/presets/${choice})"
+}
+
+choose_category
