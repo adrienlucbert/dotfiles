@@ -285,7 +285,7 @@ click-left = ~/.config/polybar/scripts/onedrive.sh toggle
 type = custom/script
 
 exec = ~/.config/polybar/scripts/clipmenu.sh
-interval = 0
+interval = 1
 
 click-left = ~/.config/polybar/scripts/clipmenu.sh menu
 click-right = ~/.config/polybar/scripts/clipmenu.sh toggle
