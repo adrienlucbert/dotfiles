@@ -94,7 +94,6 @@ alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
 alias zshconf="vim ~/.zshrc"
 alias i3conf="vim ~/.config/i3/config"
-alias polybarconf="vim ~/.config/polybar/config"
 alias vimconf="vim ~/.vimrc"
 
 ## clear screen
