@@ -38,6 +38,7 @@ function arrange_monitors {
             ;;
         "turn off")
             xrandr --output $target --off
+            sh -c "~/.config/polybar/launch.sh"
             ;;
         "rotate")
             rotation=$(echo -e "inverted\nleft\nnormal\nright" | rofi -dmenu)
@@ -45,6 +46,7 @@ function arrange_monitors {
             ;;
         "turn on")
             xrandr --output $target --auto
+            sh -c "~/.config/polybar/launch.sh"
             ;;
     esac
 }
@@ -58,6 +60,7 @@ function choose_preset {
     fi
     echo "cat ${config_dir}/presets/${choice}"
     sh -c "$(cat ${config_dir}/presets/${choice})"
+    sh -c "~/.config/polybar/launch.sh"
 }
 
 choose_category
