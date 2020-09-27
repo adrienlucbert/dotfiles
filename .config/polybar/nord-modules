@@ -89,7 +89,6 @@ date-alt = %Y-%m-%d %a
 
 format = <label>
 label =  %date%
-label-margin = 1
 label-underline = ${colors.nord8}
 
 [module/battery]
@@ -167,19 +166,55 @@ ramp-headphones-0 = 
 
 ramp-volume-foreground = ${colors.nord7}
 
-[module/backlight]
-type = internal/xbacklight
+[module/package-updates]
+type = custom/script
+
+exec = ~/.config/polybar/scripts/package-updates.sh
+interval = 15
+click-left = ~/.config/polybar/scripts/package-updates.sh update
+
+[module/bluetooth]
+type = custom/script
+
+exec = ~/.config/polybar/scripts/bluetooth.sh
+interval = 2
+
+click-left = exec st -e sh -c 'bluetoothctl'
+
+[module/light]
+type = custom/script
+
+exec = ~/.config/polybar/scripts/light.sh
+interval = 1
 
 enable-scroll = true
+scroll-up = exec light -A 5
+scroll-down = exec light -U 6
 
-; Format
-format = <ramp> <label>
-format-underline = ${colors.nord9}
+;[module/backlight]
+;type = internal/xbacklight
+;
+;enable-scroll = true
+;
+;; Format
+;format = <ramp> <label>
+;format-underline = ${colors.nord9}
+;
+;ramp-0 = 
+;
+;label = %{A1:$HOME/.config/polybar/scripts/toggle-redshift.sh:}%percentage%%%{A}
+;ramp-foreground = ${colors.nord9}
 
-ramp-0 = 
-
-label = %{A1:$HOME/.config/polybar/scripts/toggle-redshift.sh:}%percentage%%%{A}
-ramp-foreground = ${colors.nord9}
+;[module/xbacklight]
+;type = internal/xbacklight
+;format = <ramp><label>
+;ramp-0 = 🌕
+;ramp-1 = 🌔
+;ramp-2 = 🌓
+;ramp-3 = 🌒
+;ramp-4 = 🌑
+;bar-indicator-foreground = ${colors.notify}
+;label-foreground = ${colors.success}
 
 [module/mpd]
 type = internal/mpd
@@ -227,15 +262,6 @@ bar-progress-foreground-0 = ${colors.nord7}
 bar-progress-foreground-1 = ${colors.nord8}
 bar-progress-foreground-2 = ${colors.nord9}
 
-[module/notify]
-type = custom/text
-content = 
-content-foreground = ${colors.warning}
-content-underline = ${colors.warning}
-content-padding = 1
-
-click-left = ${config.notify-click-left}
-
 [module/network-short]
 type = internal/network
 interface = ${config.interface}
@@ -265,19 +291,19 @@ ramp-signal-2-underline = ${colors.nord7}
 ramp-signal-3-foreground = ${colors.success}
 ramp-signal-3-underline = ${colors.success}
 
-[module/clash-widget]
+[module/dunst-widget]
 type = custom/script
 
-exec = ~/.config/polybar/scripts/clash.sh
-interval = 0
+exec = ~/.config/polybar/scripts/dunst.sh
+interval = 1
 
-click-left = ~/.config/polybar/scripts/clash.sh toggle
+click-left = ~/.config/polybar/scripts/dunst.sh toggle
 
 [module/onedrive-widget]
 type = custom/script
 
 exec = ~/.config/polybar/scripts/onedrive.sh
-interval = 0
+interval = 1
 
 click-left = ~/.config/polybar/scripts/onedrive.sh toggle
 
@@ -359,22 +385,6 @@ empty-notifications = false
 interval = 10
 
 label =  %notifications%
-
-[module/daily-poem]
-type = custom/ipc
-
-# replace B25KQR2Z50dxWG2oLX+PfPG5OqP/BG4s with your token from https://v2.jinrishici.com/token.
-hook-0 = ~/.config/polybar/scripts/daily-poem require B25KQR2Z50dxWG2oLX+PfPG5OqP/BG4s ~/.config/polybar/scripts/poem.txt
-hook-1 = ~/.config/polybar/scripts/daily-poem get ~/.config/polybar/scripts/poem.txt plus
-hook-2 = ~/.config/polybar/scripts/daily-poem get ~/.config/polybar/scripts/poem.txt minus
-
-initial = 1
-
-scroll-up = polybar-msg -p %pid% hook daily-poem 2
-scroll-down = polybar-msg -p %pid% hook daily-poem 3
-double-click-left = polybar-msg -p %pid% hook daily-poem 1
-
-format-underline = ${colors.nord7}
 
 [module/network-detail]
 type = internal/network

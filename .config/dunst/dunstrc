@@ -37,18 +37,18 @@ history = ctrl+egrave
 
 [urgency_low]
 timeout = 4
-background = "#282136"
-foreground = "#F8F8F2"
-frame_color = "#44475A"
+background = "#2E3440"
+foreground = "#D8DEE9"
+frame_color = "#5e81ac"
 
 [urgency_normal]
 timeout = 8
-background = "#282136"
-foreground = "#F8F8F2"
-frame_color = "#44475A"
+background = "#2E3440"
+foreground = "#D8DEE9"
+frame_color = "#88c0d0"
 
 [urgency_critical]
 timeout = 0
-background = "#282136"
-foreground = "#F8F8F2"
-frame_color = "#ff7043"
+background = "#2E3440"
+foreground = "#D8DEE9"
+frame_color = "#bf616a"

@@ -2,7 +2,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+
+export EDITOR=vim
 
 [[ -f $HOME/.zsh_profile ]] && source $HOME/.zsh_profile
 
@@ -90,6 +92,11 @@ alias merge="xrdb ~/.Xresources"
 ## configure
 alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
+alias zshconf="vim ~/.zshrc"
+alias i3conf="vim ~/.config/i3/config"
+alias polybarconf="vim ~/.config/polybar/config"
+alias vimconf="vim ~/.vimrc"
+
 ## clear screen
 alias c="clear"
 
@@ -113,3 +120,5 @@ alias vim="stty stop '' -ixoff; vim"
 alias fixbt="pacmd set-card-profile bluez_card.70_BF_92_01_DB_57 a2dp_sink"
 
 alias cp="rsync -az --info=progress2 --no-inc-recursive" 
+
+alias colortest="npx colortest"

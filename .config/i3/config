@@ -199,7 +199,8 @@ bindsym $mod+w exec $browser
 
 # start applications menu
 #bindsym $mod+p exec rofi -show drun
-bindsym $mod+p exec dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'
+#bindsym $mod+p exec dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'
+bindsym $mod+p exec rofi -show run
 bindsym $mod+Shift+p exec rofi -show drun
 
 # restart i3 inplace

@@ -11,8 +11,8 @@ set clipboard=exclude:.*
 set backspace=2
 
 syntax on
-colorscheme gruvbox 
-set bg=dark
+colorscheme nord
+"set bg=dark
 
 let g:colorizer_auto_color = 1
 let g:ctrlp_custom_ignore = 'node_modules\|git'

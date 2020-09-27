@@ -7,7 +7,9 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar1 and bar2
-polybar -c $HOME/.config/polybar/dark-config nord-top &
-#polybar -c $HOME/.config/polybar/dark-config nord-down &
+for m in $(polybar --list-monitors | cut -d":" -f1); do
+	MONITOR=$m polybar -c $HOME/.config/polybar/dark-config nord-top &
+    #polybar -c $HOME/.config/polybar/dark-config nord-down &
+done
 
 echo "Polybar launched..."

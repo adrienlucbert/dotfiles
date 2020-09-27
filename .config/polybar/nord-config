@@ -7,7 +7,7 @@ monitor = ${env:MONITOR:eDP1}
 
 # bar position, apply globally
 width = 100%
-height = 3%
+height = 2.5%
 offset-x = 0
 offset-y = 0
 radius = 0.0
@@ -45,7 +45,7 @@ wm-restack = i3
 # Top modules
 top-left = i3
 top-center = title
-top-right = memory temperature alsa battery date
+top-right = dunst-widget package-updates light alsa bluetooth memory temperature battery date
 
 # Bottom modules
 bottom-left = 
@@ -94,7 +94,7 @@ warn-temperature = 80
 github-token = 92ad6048ec372644af59224d49fec6974b8473ac
 
 # notify module setting
-notify-click-left = xdotool key control+egrave
+notify-click-left = 
 
 # network module setting
 network-click-left = 
