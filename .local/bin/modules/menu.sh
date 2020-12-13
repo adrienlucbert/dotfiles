@@ -1,0 +1,2 @@
+
+open-menu() { rofi -dmenu "$@"; }

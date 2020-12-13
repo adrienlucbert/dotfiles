@@ -1,5 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:/home/alucbert/.local/idea-IU-202.7319.50/bin
+
+export ANDROID_SDK_VERSION=29.0.2
+export ANDROID_SDK_ROOT=$HOME/.android/android_sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/$ANDROID_SDK_VERSION/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/$ANDROID_SDK_VERSION/
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator/
+
+export PAGER=vimpager
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -7,6 +16,8 @@ export ZSH=$HOME/.oh-my-zsh
 export EDITOR=vim
 
 [[ -f $HOME/.zsh_profile ]] && source $HOME/.zsh_profile
+
+[[ -f $HOME/.local/bin/modules/utils.sh ]] && source $HOME/.local/bin/modules/utils.sh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -36,9 +47,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   zsh-autosuggestions
   git
+  docker
 )
 
 source $ZSH/oh-my-zsh.sh
+source <(kubectl completion zsh)
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -114,6 +127,10 @@ alias makec='make clean'
 alias maked='make debug'
 alias maker='make re'
 
+# git shortcuts
+alias gits="git status"
+alias gitl="git log"
+
 alias vim="stty stop '' -ixoff; vim"
 
 alias fixbt="pacmd set-card-profile bluez_card.70_BF_92_01_DB_57 a2dp_sink"
@@ -121,3 +138,11 @@ alias fixbt="pacmd set-card-profile bluez_card.70_BF_92_01_DB_57 a2dp_sink"
 alias cp="rsync -az --info=progress2 --no-inc-recursive" 
 
 alias colortest="npx colortest"
+
+# make directory and navigate to it
+function mcd() {
+    md $1 && cd $1
+}
+
+# receive missing gpg key
+alias gpgrecv="gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys"

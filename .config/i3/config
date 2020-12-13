@@ -7,7 +7,7 @@
 set $alt Mod1
 set $numlock Mod2
 set $mod Mod4
-set $term st
+set $term kitty
 set $browser google-chrome
 
 ###############################################################################
@@ -15,7 +15,7 @@ set $browser google-chrome
 ###############################################################################
 
 font pango:monospace 10
-gaps inner 8
+gaps inner 5
 #force-xinerama yes
 
 ###############################################################################
@@ -23,6 +23,8 @@ gaps inner 8
 ###############################################################################
 
 exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc
+exec --no-startup-id xset r rate 200 50
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ###############################################################################
 # WINDOW RULES
@@ -34,14 +36,15 @@ focus_follows_mouse no
 # set floating applications
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+for_window [class="R-Type"] floating enable
 
 # set windows appearance
-for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] border pixel 3
 
 # class                 border  bg      text    ind     child_border 
-client.focused          #8fbcbb #8fbcbb #2e3440 #8fbcbb #8fbcbb
-client.focused_inactive #2e3440 #2e3440 #f8f8f2 #2e3440 #2e3440
-client.unfocused        #2e3440 #2e3440 #f8f8f2 #2e3440 #2e3440
+client.focused          #42b883 #42b883 #2e3440 #42b883 #42b883
+client.focused_inactive #35495e #2e3440 #f8f8f2 #35495e #35495e
+client.unfocused        #35495e #2e3440 #f8f8f2 #35495e #35495e
 client.urgent           #bf616a #bf616a #2e3440 #bf616a #bf616a
 client.placeholder      #2e3440 #2e3440 #f8f8f2 #2e3440 #2e3440
 
@@ -49,9 +52,9 @@ client.placeholder      #2e3440 #2e3440 #f8f8f2 #2e3440 #2e3440
 # WORSPACES
 ###############################################################################
 
-set $output1 "eDP1"
-set $output2 "DP1-1"
-set $output3 "DP1-2"
+set $output1 "eDP-1"
+set $output2 "DP-1-1"
+set $output3 "DP-1-3"
 
 # define workspaces
 workspace 1 output $output1
@@ -63,6 +66,9 @@ workspace 6 output $output2
 workspace 7 output $output3
 workspace 8 output $output3
 workspace 9 output $output3
+
+# the middle button toggles floating
+bindsym $mod+button3 floating toggle
 
 # focus output
 bindsym $mod+Shift+w focus output $output1
@@ -147,7 +153,6 @@ bindsym $mod+Shift+Tab workspace prev
 #    }
 #}
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ###############################################################################
 # WINDOW CONTROL
@@ -178,6 +183,12 @@ bindsym $mod+Shift+Q kill
 ###############################################################################
 # SHORTCUTS
 ###############################################################################
+
+# launch monitor_control script
+bindsym $mod+m exec --no-startup-id ~/.local/bin/monitorcontrol
+
+# launch audio mixer
+bindsym $mod+a exec --no-startup-id ~/.local/bin/mixer
 
 # control audio
 set $refresh_i3status killall -SIGUSR1 i3status

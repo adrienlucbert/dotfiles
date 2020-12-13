@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+bspc rule -r "*"
+
+### Autostart {
+
+~/.config/autostart.sh &
+
+# }
+
+
+
+
+### Workspace / Monitor config {
+
+# Divide desktops between connected monitors {
+DESKTOPS_COUNT=10
+
+MONITORS=$(xrandr -q | grep " connected" | cut -d ' ' -f1)
+DESKTOPS_PER_MONITOR=$(expr $DESKTOPS_COUNT / $(echo $MONITORS | wc -w))
+
+INDEX=0
+for m in $MONITORS; do
+  FIRST=$(expr $INDEX "*" $DESKTOPS_PER_MONITOR + 1)
+  LAST=$(expr $(expr $INDEX "*" $DESKTOPS_PER_MONITOR) + $DESKTOPS_PER_MONITOR)
+  bspc monitor $m -d $(seq $FIRST $LAST)
+  let INDEX=INDEX+1
+done
+# }
+
+bspc config remove_disabled_monitors    true
+bspc config remove_unplugged_monitors   true
+
+# }
+
+
+
+
+### UI config {
+
+accent_color=#42b883
+bspc config normal_border_color   #000000 #$(xresources "*.background")
+bspc config focused_border_color  $accent_color
+bspc config active_border_color   $accent_color
+
+bspc config border_width          3
+bspc config window_gap            5
+
+bspc config borderless_monocle    true
+bspc config gapless_monocle       true
+
+bspc config pointer_follows_monitor   true
+bspc config click_to_focus            any
+
+# }
+
+
+
+
+### Layouts config {
+
+bspc config split_ratio          0.5
+
+# }
+
+
+
+
+### Node rules {
+
+# }

@@ -1,23 +1,25 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+source "$HOME/.local/bin/modules/menu.sh"
 
 config_dir="/home/alucbert/.local/share/monitorcontrol"
 
 function choose_category {
-    choices=("arrange monitors" "use preset")
-    choice=$(printf '%s\n' "${choices[@]}" | rofi -dmenu)
+    choices=("use preset" "arrange monitors")
+    choice=$(printf '%s\n' "${choices[@]}" | open-menu)
 
     case $choice in
         "${choices[0]}")
-            arrange_monitors
-            ;;
+          choose_preset
+          ;;
         "${choices[1]}")
-            choose_preset
-            ;;
+          arrange_monitors
+          ;;
     esac
 }
 
 function arrange_monitors {
-    target=$(xrandr -q | grep " connected" | cut -d' ' -f1 | rofi -dmenu)
+    target=$(xrandr -q | grep " connected" | cut -d' ' -f1 | open-menu)
 
     if [ -z "$target" ]; then
         exit
@@ -25,15 +27,15 @@ function arrange_monitors {
 
     # if target monitor is active:
     if [ "$(xrandr --listactivemonitors | grep $target | wc -l)" -eq 1 ]; then
-        action=$(echo -e "move\nturn off\nrotate" | rofi -dmenu)
+        action=$(echo -e "move\nturn off\nrotate" | open-menu)
     else
-        action=$(echo "turn on" | rofi -dmenu)
+        action=$(echo "turn on" | open-menu)
     fi
 
     case $action in
         "move")
-            position=$(echo -e "left-of\nright-of\nabove\nbelow" | rofi -dmenu)
-            reference=$(xrandr -q | grep " connected" | cut -d' ' -f1 | grep -v $target | rofi -dmenu)
+            position=$(echo -e "left-of\nright-of\nabove\nbelow" | open-menu)
+            reference=$(xrandr -q | grep " connected" | cut -d' ' -f1 | grep -v $target | open-menu)
             xrandr --output $target --$position $reference
             ;;
         "turn off")
@@ -41,7 +43,7 @@ function arrange_monitors {
             sh -c "~/.config/polybar/launch.sh"
             ;;
         "rotate")
-            rotation=$(echo -e "inverted\nleft\nnormal\nright" | rofi -dmenu)
+            rotation=$(echo -e "inverted\nleft\nnormal\nright" | open-menu)
             xrandr --output $target --rotate $rotation
             ;;
         "turn on")
@@ -53,12 +55,11 @@ function arrange_monitors {
 
 function choose_preset {
     choices=( $(ls "${config_dir}/presets") )
-    choice=$(printf '%s\n' "${choices[@]}" | rofi -dmenu)
+    choice=$(printf '%s\n' "${choices[@]}" | open-menu)
 
     if [ -z "$choice" ]; then
         exit
     fi
-    echo "cat ${config_dir}/presets/${choice}"
     sh -c "$(cat ${config_dir}/presets/${choice})"
     sh -c "~/.config/polybar/launch.sh"
 }

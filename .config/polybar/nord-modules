@@ -69,6 +69,56 @@ label-urgent-foreground = ${colors.urgent}
 label-urgent-background = ${colors.foreground}
 label-urgent-padding = 2
 
+[module/bspwm]
+type = internal/bspwm
+
+; Only show workspaces defined on the same output as the bar
+; NOTE: The bspwm and XRandR monitor names must match, which they do by default.
+; But if you rename your bspwm monitors with bspc -n this option will no longer
+; behave correctly.
+; Default: true
+pin-workspaces = true
+
+; Output mode flags after focused state label
+; Default: false
+inline-mode = false
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
+format = <label-state>
+
+label-focused = %name%
+label-focused-padding = 2
+label-focused-foreground = ${colors.nord7}
+label-focused-underline = ${colors.nord7}
+
+label-empty = %name%
+label-empty-padding = 2
+label-empty-foreground = ${colors.foreground}
+
+label-urgent = %name%
+label-urgent-padding = 2
+label-urgent-foreground = ${colors.urgent}
+label-urgent-background = ${colors.foreground}
+
+
 [module/title]
 type = internal/xwindow
 format-foreground = ${colors.nord7}
