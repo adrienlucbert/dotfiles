@@ -26,7 +26,7 @@ super + m; {Left,Return,Right}
 
 # make sxhkd reload its configuration files:
 super + shift + r
-	pkill -USR1 -x sxhkd
+	~/.config/sxhkd/scripts/reload.sh
 
 # }
 
@@ -84,7 +84,7 @@ super + question
 
 # quit/restart bspwm
 super + alt + {,r}
-	~/.config/bspwm/bspwmrc
+  ~/.config/bspwm/scripts/reload.sh
 
 # }
 

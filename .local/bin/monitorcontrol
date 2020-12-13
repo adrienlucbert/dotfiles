@@ -4,6 +4,10 @@ source "$HOME/.local/bin/modules/menu.sh"
 
 config_dir="/home/alucbert/.local/share/monitorcontrol"
 
+function reload_wm {
+    sh -c "~/.config/bspwm/scripts/reload.sh"
+}
+
 function choose_category {
     choices=("use preset" "arrange monitors")
     choice=$(printf '%s\n' "${choices[@]}" | open-menu)
@@ -40,7 +44,7 @@ function arrange_monitors {
             ;;
         "turn off")
             xrandr --output $target --off
-            sh -c "~/.config/polybar/launch.sh"
+            reload_wm 
             ;;
         "rotate")
             rotation=$(echo -e "inverted\nleft\nnormal\nright" | open-menu)
@@ -48,7 +52,7 @@ function arrange_monitors {
             ;;
         "turn on")
             xrandr --output $target --auto
-            sh -c "~/.config/polybar/launch.sh"
+            reload_wm 
             ;;
     esac
 }
@@ -61,7 +65,7 @@ function choose_preset {
         exit
     fi
     sh -c "$(cat ${config_dir}/presets/${choice})"
-    sh -c "~/.config/polybar/launch.sh"
+    reload_wm 
 }
 
 choose_category

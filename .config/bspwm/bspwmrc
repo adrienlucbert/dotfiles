@@ -16,7 +16,7 @@ bspc rule -r "*"
 # Divide desktops between connected monitors {
 DESKTOPS_COUNT=10
 
-MONITORS=$(xrandr -q | grep " connected" | cut -d ' ' -f1)
+MONITORS=$(xrandr --listactivemonitors | sed -n '1!p' | awk '{print $4}')
 DESKTOPS_PER_MONITOR=$(expr $DESKTOPS_COUNT / $(echo $MONITORS | wc -w))
 
 INDEX=0
