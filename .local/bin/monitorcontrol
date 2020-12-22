@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source "$HOME/.local/bin/modules/menu.sh"
-
 config_dir="/home/alucbert/.local/share/monitorcontrol"
 
 function reload_wm {

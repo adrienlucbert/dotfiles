@@ -8,7 +8,7 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/$ANDROID_SDK_VERSION/bin
 export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/$ANDROID_SDK_VERSION/
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator/
 
-export PAGER=vimpager
+#export PAGER=vimpager
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -87,7 +87,7 @@ alias update="sudo pacman -Su"
 alias remove="sudo pacman -Rns"
 
 ## autoremove unneeded dependencies
-alias autoremove="sudo pacman -Rns $(pacman -Qtdq)"
+alias autoremove="sudo pacman -Rns \$(pacman -Qtdq)"
 
 ## View and set wallpaper with feh
 alias feh-view="feh --scale-down --auto-zoom"
