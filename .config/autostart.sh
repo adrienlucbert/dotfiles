@@ -8,7 +8,7 @@ action="$1";
 is_kill() { [[ "$action" == "kill" ]]; }
 
 # Is process $1 running
-is_running() { test $(pgrep $1); }
+is_running() { test $(pgrep $1 | head -n1); }
 
 # Only run when there are no windows on the screen
 on_startup() { is_kill || [[ "$(wmctrl -l | wc -l)" = "0" ]] && $@ & }
@@ -26,7 +26,7 @@ once() {
 # Kill previous instance and run again
 run() {
   local name=$1; shift
-  [[ ! -z "$name" ]] && is_running $name && killall -9 $name
+  [[ ! -z "$name" ]] && is_running $name && pkill $name
   is_kill || $@ &
 }
 # }
@@ -39,6 +39,9 @@ run() {
 
   # Better key autorepeat rate
   run "" xset r rate 200 50
+
+  # Set default cursor
+  run "" xsetroot -cursor_name left_ptr
 
   # Activate numlock
   run "numlockx" numlockx
@@ -59,7 +62,7 @@ run() {
   once "nm-applet" nm-applet
 
   # Automatic screen temperature and brightness
-  once "redshift" redshift -c ~/.config/redshift/redshift.conf
+  run "redshift" redshift -c ~/.config/redshift/redshift.conf
 
   # Hotkey daemon 
   run "sxhkd" sxhkd -c ~/.config/sxhkd/sxhkdrc -m 1

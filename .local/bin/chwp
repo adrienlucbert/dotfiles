@@ -1,13 +1,15 @@
 #!/bin/sh
 
+HOME=/home/alucbert
 wps_dir="$HOME/.config/wallpapers"
 
-wp=$(ls $wps_dir -1 | rofi -dmenu)
+wp=$(ls $wps_dir -1 | open-menu)
 
-if [ -z "$wp" ]; then
-    exit
-fi
+[ -z "$wp" ] && >&2 echo "Wallpaper not found" && exit 1
 
 ln -fs $wps_dir/$wp $HOME/.wall
-feh --bg-fill ~/.wall
-betterlockscreen -u ~/.wall -b 2
+feh --bg-fill $HOME/.wall
+betterlockscreen -u $HOME/.wall -b 2
+
+[ $(id -u) -ne 0 ] && >&2 echo "Please run as root" && exit 1
+cp $HOME/.cache/i3lock/current/dimblur.png /usr/share/sddm/themes/firark/Assets/background.png

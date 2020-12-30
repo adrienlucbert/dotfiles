@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 lock_() { betterlockscreen -l dimblur; }
-logout_() { ~/.config/autostart.sh kill; bspc quit; }
+logout_() { bspc quit; }
 shutdown_() { shutdown now; }
 reboot_() { reboot; }
 suspend_() { lock_ & disown; sleep 0.3; systemctl suspend; }

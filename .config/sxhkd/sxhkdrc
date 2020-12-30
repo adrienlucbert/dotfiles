@@ -16,12 +16,16 @@ super + Return
 super + w
   google-chrome-stable
 
+# launch file explorer
+super + e
+  pcmanfm
+
 # launch process viewer
 ctrl + alt + Delete
   kitty -e htop
 
 # Spotify control
-super + m; {Left,Return,Right}
+super + m; {h,Return,l}
   playerctl -p spotify {previous,play-pause,next}
 
 # make sxhkd reload its configuration files:
@@ -47,17 +51,13 @@ shift + @Print
 ctrl + @Print
   scrot --focused -e 'mv $f ~/screenshots'
 
-# raise volume
-XF86AudioRaiseVolume
-  pulsemixer --change-volume +10
-
-# lower volume
-XF86AudioLowerVolume
-  pulsemixer --change-volume -10
-
 # mute sound
 XF86AudioMute
-  pulsemixer --toggle-mute
+  amixer set Master toggle
+
+# raise/lower volume
+XF86Audio{Raise,Lower}Volume
+  amixer set Master {5%+,5%-} unmute
 
 # raise brightness
 XF86MonBrightnessUp

@@ -1,13 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/home/alucbert/.local/idea-IU-202.7319.50/bin
-
-export ANDROID_SDK_VERSION=29.0.2
-export ANDROID_SDK_ROOT=$HOME/.android/android_sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/$ANDROID_SDK_VERSION/bin
-export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/$ANDROID_SDK_VERSION/
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator/
-
 #export PAGER=vimpager
 
 # Path to your oh-my-zsh installation.
@@ -16,8 +8,6 @@ export ZSH=$HOME/.oh-my-zsh
 export EDITOR=vim
 
 [[ -f $HOME/.zsh_profile ]] && source $HOME/.zsh_profile
-
-[[ -f $HOME/.local/bin/modules/utils.sh ]] && source $HOME/.local/bin/modules/utils.sh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
