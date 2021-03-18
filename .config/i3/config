@@ -22,9 +22,10 @@ gaps inner 5
 # AUTOSTART
 ###############################################################################
 
-exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc
-exec --no-startup-id xset r rate 200 50
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id $HOME/.config/autostart.sh
+#exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc
+#exec --no-startup-id xset r rate 200 50
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ###############################################################################
 # WINDOW RULES

@@ -1,0 +1,30 @@
+{
+    "languageserver": {
+        "clangd.enabled": true,
+        "clangd.semanticHighlighting": true,
+        "clangd": {
+            "command": "clangd",
+            "args": [
+                "--background-index",
+                "-clang-tidy",
+                "-j=3",
+                "--suggest-missing-includes",
+                "--header-insertion=iwyu",
+                "--all-scopes-completion"
+            ],
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ]
+        }
+    }
+}

@@ -2,14 +2,14 @@
 
 case $1 in
     "inc")
-        light -A 5
+        xlight add .05
     ;;
     "dec")
-        light -U 5
+        xlight sub .05
     ;;
 esac
 
-percentage=$(light | cut -d'.' -f1)
+percentage=$( echo "$( xlight )*100" | bc | cut -d'.' -f1 )
 
 ramp=🌕
 case $percentage in
@@ -22,7 +22,7 @@ case $percentage in
     6[0-9]|7[0-9])
         ramp=🌒
     ;;
-    8[0-9]|9[0-9]|100)
+    *)
         ramp=🌑
     ;;
 esac

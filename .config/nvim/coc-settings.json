@@ -1,0 +1,12 @@
+{
+    "clangd.enabled": true,
+    "clangd.arguments": [
+        "--background-index",
+        "-clang-tidy",
+        "-j=3",
+        "--suggest-missing-includes",
+        "--header-insertion=iwyu",
+        "--all-scopes-completion"
+    ],
+    "clangd.semanticHighlighting": true
+}

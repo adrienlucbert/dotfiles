@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-#export PAGER=vimpager
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -55,6 +54,8 @@ source <(kubectl completion zsh)
 ## Some useful alias to make your life easier :)
 ##
 
+alias vim="nvim"
+
 ## ls group directory first
 alias lsf="ls --group-directories-first --color=auto"
 
@@ -97,7 +98,7 @@ alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
 alias zshconf="vim ~/.zshrc"
 alias i3conf="vim ~/.config/i3/config"
-alias vimconf="vim ~/.vimrc"
+alias vimconf="vim ~/init.vim"
 
 ## clear screen
 alias c="clear"
@@ -121,8 +122,6 @@ alias maker='make re'
 alias gits="git status"
 alias gitl="git log"
 
-alias vim="stty stop '' -ixoff; vim"
-
 alias fixbt="pacmd set-card-profile bluez_card.70_BF_92_01_DB_57 a2dp_sink"
 
 alias cp="rsync -az --info=progress2 --no-inc-recursive" 
@@ -136,3 +135,11 @@ function mcd() {
 
 # receive missing gpg key
 alias gpgrecv="gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys"
+
+function visum() {
+    bash /usr/share/visum/scripts/visum.sh $1 > /dev/null 2>&1
+}
+
+alias myip="curl https://api.ipify.org"
+
+alias yayzf="yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk \"{print \$2}\")' | xargs -ro  yay -S"
