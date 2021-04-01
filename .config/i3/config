@@ -45,6 +45,8 @@ floating_modifier $mod
 
 focus_follows_mouse no
 
+focus_wrapping no
+
 # start a terminal
 # bindsym $mod+Return exec kitty
 
