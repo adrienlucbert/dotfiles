@@ -1,32 +1,45 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'prabirshrestha/vim-lsp' " lsp
-
+" completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-surround'
+Plug 'AndrewRadev/tagalong.vim' " automatic html tag renaming
+Plug 'tomtom/tcomment_vim' " comments
+Plug 'godlygeek/tabular' " align items
 
+" debug
 Plug 'puremourning/vimspector' " multi-language debugger interface
 
+" snippets
+Plug 'SirVer/ultisnips'
+
+" languages
 Plug 'rhysd/vim-clang-format'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'jackguo380/vim-lsp-cxx-highlight' " coc-clangd semantic highlighting
-Plug 'nikvdp/ejs-syntax'
+Plug 'nikvdp/ejs-syntax' " ejs syntax highlighting
 
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-Plug 'airblade/vim-gitgutter'
+" git
+Plug 'tpope/vim-fugitive' " git power
+Plug 'junegunn/gv.vim' " git commit browser
+Plug 'airblade/vim-gitgutter' " git gutter
 
-Plug 'AndrewRadev/tagalong.vim'
-Plug 'preservim/nerdcommenter'
-Plug 'godlygeek/tabular'
-
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
-
+" movements
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-rooter'
 Plug 'psliwka/vim-smoothie'
+" Plug 'Konfekt/FastFold'
 
+" colorschemes
 Plug 'sainnhe/edge'
+Plug 'nanotech/jellybeans.vim'
+
+" cosmetics
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+
+" misc
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 call plug#end()

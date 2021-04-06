@@ -1,12 +1,29 @@
 {
-    "clangd.enabled": true,
-    "clangd.arguments": [
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "args": [
         "--background-index",
-        "-clang-tidy",
-        "-j=3",
+        "--clang-tidy",
+        "-j=8",
+        "--all-scopes-completion",
         "--suggest-missing-includes",
-        "--header-insertion=iwyu",
-        "--all-scopes-completion"
-    ],
-    "clangd.semanticHighlighting": true
+        "--completion-style=detailed",
+        "--header-insertion=iwyu"
+      ],
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/"
+      ]
+    }
+  },
+  "diagnostic.virtualText": true
 }

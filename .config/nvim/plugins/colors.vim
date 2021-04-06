@@ -1,2 +1,4 @@
 syntax on
-colorscheme edge
+colorscheme jellybeans
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none

@@ -8,4 +8,3 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " use c-space to trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <NUL> coc#refresh()
