@@ -19,3 +19,6 @@ xnoremap i I
 
 " Unbind annoying Ex mode
 nmap Q <Nop>
+
+" Stop pressing shift+;
+nmap ; :

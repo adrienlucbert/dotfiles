@@ -12,3 +12,21 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Clang-format
 autocmd FileType c,cpp,h,hpp nnoremap <leader>x :ClangFormat<CR>
 autocmd FileType c,cpp,h,hpp ClangFormatAutoEnable
+
+" open extra information panel
+nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gR <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-rename)
+
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+let g:coc_snippet_prev = '<C-h>'
+let g:coc_snippet_next = '<C-l>'
+
+" CocAction
+nnoremap <C-c> :CocAction<CR>

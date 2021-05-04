@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/adrien/install/dotfiles'
 let g:netrw_dirhist_2='/home/alucbert/.config/nvim'
 let g:netrw_dirhist_1='/home/alucbert/.config/nvim/general'
 let g:netrw_dirhist_0='/home/alucbert/.config/nvim'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_7='/home/alucbert/.config/nvim/colors'
 let g:netrw_dirhist_6='/home/alucbert/delivery/B5/CPP/rtype'
 let g:netrw_dirhist_5='/home/alucbert/install/visum'
 let g:netrw_dirhist_4='/home/alucbert/Downloads'
-let g:netrw_dirhist_3='/home/alucbert/install/awesome-streamerrc/ThePrimeagen'
